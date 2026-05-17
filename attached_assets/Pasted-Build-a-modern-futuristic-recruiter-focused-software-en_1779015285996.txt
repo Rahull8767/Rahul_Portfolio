@@ -1,0 +1,432 @@
+Build a modern, futuristic, recruiter-focused software engineer portfolio website for Rahul Tembhare, a third-year B.Tech student specializing in Industrial IoT at Priyadarshini College of Engineering, Nagpur.
+Position Rahul as:
+
+Full Stack Developer
+IoT Engineer
+AI/ML Enthusiast
+Hackathon Builder
+Software Engineer
+Problem Solver
+
+The portfolio should feel: authentic, technically impressive, execution-focused, and grounded — not overinflated with fake seniority.
+Goals: Help Rahul secure software engineering internships, IoT and AI/ML opportunities, hackathon recognition, and freelance/project work.
+The design must impress a recruiter in under 10 seconds.
+
+TECH STACK
+Frontend:
+
+React 18 + Vite
+TypeScript (strict mode throughout — no any types; define interfaces for all props and data shapes)
+Tailwind CSS
+Framer Motion
+Shadcn UI
+React Icons
+GSAP (for scroll-triggered animations only; use Framer Motion for component-level animations)
+EmailJS (contact form)
+
+APIs & Integrations:
+
+GitHub REST API v3 (with a static JSON fallback file for when the API rate-limits — always implement the fallback)
+
+Deployment: Vercel (with vercel.json config included)
+
+DESIGN SYSTEM
+Theme: Futuristic dark, premium developer-focused, modern startup aesthetic
+Color palette:
+
+Background: #000000 to #0a0a1a (deep black to near-black navy)
+Accent 1: Cyan glow #00f5ff / #06b6d4
+Accent 2: Electric blue #3b82f6 / #1d4ed8
+Accent 3: Purple gradient #7c3aed to #a855f7
+Text: #f1f5f9 primary, #94a3b8 secondary, #64748b muted
+Glass surfaces: rgba(255,255,255,0.03) to rgba(255,255,255,0.08)
+
+UI Patterns:
+
+Glassmorphism cards with backdrop-filter: blur(12px)
+Glowing borders using box-shadow with accent colors
+Smooth hover animations (scale, glow intensity, border color shifts)
+Animated gradient text using background-clip: text
+Minimal, powerful typography — one display font (e.g., Space Grotesk or Inter), one mono font (JetBrains Mono) for terminal elements
+
+Animations (performance-critical):
+
+Use only GPU-composited properties: transform, opacity, filter
+Never animate width, height, top, left, margin, padding
+Implement prefers-reduced-motion media query — all animations must degrade gracefully to instant transitions
+Use will-change: transform sparingly and only when animation is active
+Intersection Observer for all scroll-reveal effects (not scroll event listeners)
+
+Visual Effects:
+
+Animated grid background (CSS grid lines, subtle opacity)
+Floating particle system (canvas-based, max 60 particles, pause when tab is not visible)
+Smooth scroll with scroll-behavior: smooth
+Typing animation (typewriter effect with cursor blink)
+Reveal-on-scroll (Framer Motion useInView)
+Animated counters (count up when entering viewport)
+Scroll progress bar (fixed top, thin cyan line)
+
+
+NAVIGATION
+Create a fixed top navbar with:
+
+Logo / name mark on the left (RT monogram with cyan glow)
+Navigation links: About, Skills, Projects, Experience, GitHub, Contact
+Active section highlighting (using Intersection Observer to detect current section)
+Smooth scroll to section on click
+On mobile: hamburger menu with a full-screen slide-in drawer (Framer Motion)
+Blur + glassmorphism background that activates on scroll (transparent at top)
+A "Download Resume" CTA button in the top-right
+
+
+LOADING SCREEN
+Show a full-screen loading animation on first visit:
+
+Terminal-style boot sequence printing lines like Initializing portfolio..., Loading projects..., Ready.
+Cyan blinking cursor
+Fades out after ~1.8 seconds
+Use sessionStorage to skip it on subsequent page visits within the same session
+
+
+WEBSITE STRUCTURE
+1. HERO SECTION
+A stunning, full-viewport landing section.
+Content:
+
+Name: Rahul Tembhare (large display type, animated gradient)
+Animated role titles cycling through (Typed.js or Framer Motion keyframes):
+
+Industrial IoT Engineer
+Full Stack Developer
+AI/ML Enthusiast
+Software Engineer
+Hackathon Builder
+
+
+Tagline: "Building intelligent software and IoT solutions through code, automation, and AI."
+Three CTA buttons: View Projects (primary, cyan glow), Download Resume (secondary, outlined), Contact Me (ghost/text)
+
+Visual elements:
+
+Animated coding terminal on the right side (or center on mobile). The terminal cycles through realistic-looking commands and outputs:
+
+  $ python train_model.py --dataset beauty_analysis
+  > Training... accuracy: 94.2%
+  $ git push origin main
+  > Pushed to rahultembhare/ai-beauty-analysis
+  $ flask run --host=0.0.0.0
+  > Running on http://0.0.0.0:5000
+  $ arduino-cli compile --fqbn esp32:esp32:esp32
+  > Sketch uses 342KB of program storage
+
+Floating tech icons orbiting or floating around the terminal (React, Python, ESP32, Flask, OpenCV logos as SVGs)
+Particle background (canvas)
+Subtle animated grid overlay
+
+Resume: The "Download Resume" button must link to a PDF hosted directly in the repository at /public/resume/rahul-tembhare-resume.pdf. This ensures the link never breaks and is always under Rahul's control.
+
+2. ABOUT SECTION
+Heading: About Me
+Write a genuine, well-paced two-paragraph introduction. Do not exaggerate. Keep it student-authentic.
+Paragraph 1: Rahul is a third-year B.Tech student in Industrial IoT at Priyadarshini College of Engineering, Nagpur. He's drawn to the intersection of hardware and software — building systems where embedded devices, cloud APIs, and AI models work together to solve real problems.
+Paragraph 2: Beyond coursework, he's led teams in hackathons like SIH and TechFest IIT Bombay, organized a Generative AI workshop, and built projects from webcam-based AI apps to Arduino robots. He's actively exploring full-stack development and AI/ML, and is looking for opportunities to contribute to real engineering teams.
+Animated stats cards (count-up animation on enter):
+
+5+ Hackathons Participated
+8+ Projects Built
+15+ Technologies Learned
+3+ Leadership Roles
+
+Animated timeline: A brief visual timeline of key moments (2023 → enrolled, 2024 → first hackathon, 2024 → built AI project, 2025 → led workshop, etc.)
+
+3. SKILLS SECTION
+Heading: Technical Skills
+Categorized skill cards with animated reveal on scroll. Each card shows the category name, relevant icons, and individual skill badges. Use a subtle hover glow effect on each badge.
+Categories:
+CategorySkillsProgrammingPython, C, C++, JavaScript, TypeScriptFrontendReact, HTML5, CSS3, Tailwind CSSBackendFlask, Streamlit, REST APIsIoT & EmbeddedArduino Uno, ESP32, Raspberry Pi, Sensors, Embedded CAI / MLOpenCV, MediaPipe, TensorFlow.js, Generative AI, AI FoundationsTools & PlatformsGit, GitHub, VS Code, Notion, Vercel
+Layout: Responsive grid, 2–3 columns on desktop, 1 column on mobile. Animated progress indicators are optional — if used, they must reflect honest approximate proficiency, not 95% on everything.
+
+4. PROJECTS SECTION (Most Important)
+Heading: Projects
+Filter tabs: All | AI/ML | IoT | Full Stack | Robotics
+Each project card includes: project title, tech stack tags, short description (2–3 sentences), key features list (max 4 bullets), GitHub link, live demo link (if available), and a "View Details" button that opens an expandable modal.
+The modal adds: longer description, challenges faced, and lessons learned.
+Projects:
+
+1. AI-Based Beauty Analysis Web App
+Full Stack · AI/ML · Computer Vision
+A browser-accessible web app that uses a webcam feed to analyze facial features in real time, providing personalized beauty feedback and smile detection. Built to explore practical OpenCV and MediaPipe pipelines within a Flask backend.
+
+Tech: Flask, OpenCV, MediaPipe, HTML/CSS/JS, Python
+Features: Real-time webcam processing, facial landmark detection, smile detection algorithm, dynamic compliment/feedback system
+Challenge: Synchronizing webcam frame rates with Flask's response streaming without dropping frames
+Lesson: Learned to optimize OpenCV pipelines for low-latency web delivery
+Links: GitHub + Live Demo (if deployed)
+
+
+2. Body Fitness Analysis App
+AI/ML · Computer Vision
+A pose estimation app that uses MediaPipe's BlazePose model to analyze body posture and calculate a fitness score based on joint angles and symmetry. Provides visual skeleton overlay and actionable feedback.
+
+Tech: Python, MediaPipe, OpenCV, Streamlit
+Features: Real-time pose landmark tracking, joint angle computation, fitness scoring algorithm, visual feedback overlay
+Challenge: Calibrating the scoring model to account for different body types and camera angles
+Lesson: Deepened understanding of human pose estimation models and their practical limitations
+Links: GitHub
+
+
+3. IoT Systems with ESP32 & Raspberry Pi
+IoT · Embedded Systems
+A collection of IoT prototypes built during coursework and independent exploration, including sensor data logging, home automation triggers, and real-time dashboard integration. Demonstrates end-to-end IoT thinking from hardware to cloud.
+
+Tech: ESP32, Raspberry Pi, Arduino IDE, MicroPython, MQTT (or HTTP), Python
+Features: Multi-sensor integration (temperature, humidity, PIR), MQTT publish/subscribe, real-time data handling, automation logic
+Challenge: Handling unreliable WiFi connectivity on ESP32 and implementing reconnect logic
+Lesson: Learned the importance of robust error handling in embedded systems where debugging is limited
+Links: GitHub
+
+
+4. Robocraft Competition Robot
+Robotics · Embedded Systems
+An autonomous/semi-autonomous robot built for a college Robocraft competition. Combines Bluetooth remote control with onboard obstacle detection using ultrasonic sensors.
+
+Tech: Arduino Uno, HC-05 Bluetooth Module, Ultrasonic Sensor, L298N Motor Driver, C++
+Features: Bluetooth-controlled movement, real-time obstacle detection and auto-stop, dual motor control, custom chassis
+Challenge: Preventing motor driver interference with sensor readings at high speeds
+Lesson: Learned hardware-level debugging and the importance of electrical isolation in motor circuits
+Links: GitHub
+
+
+5. Hand Gesture Recognition System
+AI/ML · Browser-Based
+A browser-native gesture recognition app that maps hand gestures to text and speech output. Built entirely in JavaScript using TensorFlow.js, with no backend required.
+
+Tech: TensorFlow.js, HandPose model, Web Speech API, HTML/CSS/JS
+Features: Real-time hand landmark detection, gesture-to-text mapping, text-to-speech output, no-install browser use
+Challenge: Achieving consistent gesture classification across different lighting conditions and hand sizes
+Lesson: Discovered the trade-offs between running ML models on-device vs. server-side (latency, accuracy, cost)
+Links: GitHub + Live Demo
+
+
+Featured project spotlight: Pin the AI Beauty Analysis App or Hand Gesture Recognition as a "Featured" card — larger card with a mockup image at the top of the grid.
+
+5. EXPERIENCE & LEADERSHIP
+Heading: Experience & Leadership
+A vertical animated timeline. Each entry glows in on scroll.
+RoleOrganizationNotesTeam LeaderSmart India Hackathon (SIH)Led a 6-member team to build and pitch a solution under 36-hour constraintsTeam LeaderTechFest, IIT BombayRepresented college at one of India's largest technical festivalsLead OrganizerGenerative AI WorkshopOrganized and led a hands-on workshop on GenAI tools for college peersActive MemberIEEE Student BranchParticipating member of the IEEE chapter at PCE NagpurCommittee MemberSymbiot ForumPart of the student technical forum organizing technical and cultural eventsEsports Event OrganizerCollege EventsPlanned and executed gaming tournaments for 100+ participantsStudent MentorPeer MentoringGuided junior students on technical skills and project ideation
+Add animated achievement badge icons next to leadership roles. Timeline line should have a glowing cyan stroke.
+
+6. EDUCATION
+Heading: Education
+Primary entry:
+
+Institution: Priyadarshini College of Engineering, Nagpur
+Degree: B.Tech in Industrial IoT
+Duration: 2023 – 2027 (Expected)
+Relevant Coursework: Embedded Systems, IoT Architecture, Data Structures, Machine Learning Fundamentals, Computer Networks, Digital Electronics
+
+Add a sub-section for Workshops & Training:
+
+Generative AI Workshop (Organizer & Participant)
+Embedded Systems hands-on training
+Any NPTEL or online courses completed
+
+
+7. CERTIFICATIONS
+Heading: Certifications
+Display as cards with a glowing border on hover.
+Each card must include:
+
+Certificate title
+Issuing organization (e.g., NASSCOM, Coursera, Google, etc. — fill in the actual issuer)
+Month and year issued
+Credential ID or verification link (use a placeholder if not yet available, but design the field)
+A "Verify" button that opens the credential URL
+
+Current certifications to include:
+
+AI Foundations — [Issuing Organization], [Month Year], [Credential ID]
+Generative AI — [Issuing Organization], [Month Year], [Credential ID]
+
+(Fill in real details before deploying. Design must support 4–6 certification cards.)
+
+8. GITHUB & CODING ACTIVITY
+Heading: GitHub Activity
+Integration: Use the GitHub REST API to fetch real data for rahultembhare (replace with actual GitHub username). Implement a static JSON fallback at /src/data/github-fallback.json for when the API is unavailable or rate-limited.
+Display:
+
+GitHub contribution heatmap (using github-readme-stats as an embedded image, or a custom canvas render)
+Top 4 pinned repositories as cards (name, description, language, stars, forks)
+Top languages bar chart
+Commit streak stats (embed from github-readme-streak-stats or build a static display)
+
+UI Style: Terminal-style dark panels with monospace font, animated scan-line effect, blinking cursor on section entry.
+
+9. CONTACT SECTION
+Heading: Let's Connect
+A split layout: left side has a short message and social links, right side has the contact form.
+Contact form fields:
+
+Name (required)
+Email (required, validated)
+Subject (required)
+Message (required, min 20 characters)
+Send button with loading state and success animation (checkmark with green glow)
+
+Spam protection: Implement a honeypot field (hidden from users, visible to bots). Consider adding a simple client-side timestamp check to reject submissions that complete the form in under 3 seconds.
+EmailJS integration: Use environment variables (VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID, VITE_EMAILJS_PUBLIC_KEY) — never hardcode keys.
+Social links (large icon buttons with hover glow):
+
+Email
+LinkedIn
+GitHub
+Instagram
+
+
+10. FOOTER
+
+Quick navigation links (same as navbar)
+Social icons
+Built-with note: Built with React · TypeScript · Tailwind · Framer Motion
+Copyright: © 2025 Rahul Tembhare. All rights reserved.
+A small "Back to top" button (smooth scroll)
+
+
+EXTRA FEATURES
+Dark/Light Mode Toggle:
+
+Use localStorage to persist preference
+Default to dark mode
+Smooth transition using CSS custom properties
+
+Command Palette (⌘K / Ctrl+K):
+
+Opens a modal search interface
+Commands available: navigate to any section, download resume, open GitHub, toggle theme, open contact form
+Keyboard navigable (arrow keys + enter)
+Fuzzy search through commands
+Shows keyboard shortcut hints
+
+Custom Cursor:
+
+A small cyan dot that follows the mouse
+Expands on hover over interactive elements
+Disabled on touch devices
+
+Keyboard Shortcuts:
+
+⌘K / Ctrl+K — Open command palette
+G H — Go to GitHub (sequential keypress)
+R — Download Resume (with confirmation)
+
+Easter Eggs:
+
+Typing sudo anywhere on the page triggers a terminal popup: Permission denied: this portfolio is open-source
+Konami code (↑↑↓↓←→←→BA) triggers a brief confetti burst
+
+Scroll Progress Bar: Fixed 2px cyan line at the very top of the viewport showing reading progress.
+Smooth Page Transitions: Framer Motion AnimatePresence for any route changes.
+PWA Support: manifest.json + service worker via Vite PWA plugin. Allows "Add to Home Screen" on mobile.
+
+SEO & META
+In index.html and via React Helmet (or Vite's vite-plugin-html):
+html<title>Rahul Tembhare — IoT Engineer & Full Stack Developer</title>
+<meta name="description" content="Portfolio of Rahul Tembhare, a B.Tech IoT student building AI, embedded, and full-stack systems. Open to internships and project collaborations." />
+<meta property="og:title" content="Rahul Tembhare — Portfolio" />
+<meta property="og:description" content="Building intelligent software and IoT solutions through code, automation, and AI." />
+<meta property="og:image" content="/og-image.png" />
+<meta property="og:url" content="https://rahultembhare.vercel.app" />
+<meta name="twitter:card" content="summary_large_image" />
+Create a public/og-image.png (1200×630px) — a branded card showing name, role titles, and a futuristic background. This is what appears when the link is shared on LinkedIn.
+
+ACCESSIBILITY (A11Y)
+
+All interactive elements must be keyboard-navigable with visible focus rings
+All images must have descriptive alt attributes
+All icon-only buttons must have aria-label
+Color contrast must meet WCAG AA minimum (4.5:1 for body text, 3:1 for large text)
+Animated elements must respect prefers-reduced-motion
+Use semantic HTML: <nav>, <main>, <section>, <article>, <header>, <footer>
+All sections must have aria-label or aria-labelledby
+
+
+LOADING, ERROR & SKELETON STATES
+Every data-fetching component (GitHub API, EmailJS) must implement:
+
+Loading state: skeleton shimmer loader matching the component's layout
+Error state: graceful fallback UI with a retry button (for GitHub) or error message (for contact form)
+Empty state: if no data is returned, show a placeholder with context
+The GitHub section must always render using the static fallback if the API fails — never show a broken UI
+
+
+FOLDER STRUCTURE
+rahul-portfolio/
+├── public/
+│   ├── resume/
+│   │   └── rahul-tembhare-resume.pdf
+│   ├── og-image.png
+│   └── favicon.ico
+├── src/
+│   ├── components/
+│   │   ├── ui/          # Shadcn UI components
+│   │   ├── sections/    # One file per section (Hero, About, Skills, etc.)
+│   │   ├── layout/      # Navbar, Footer, ScrollProgress, CustomCursor
+│   │   └── shared/      # Reusable: AnimatedText, ProjectCard, TimelineItem, etc.
+│   ├── data/
+│   │   ├── projects.ts      # Project data with TypeScript interfaces
+│   │   ├── skills.ts
+│   │   ├── experience.ts
+│   │   ├── certifications.ts
+│   │   └── github-fallback.json
+│   ├── hooks/
+│   │   ├── useScrollProgress.ts
+│   │   ├── useGitHubData.ts
+│   │   └── useCommandPalette.ts
+│   ├── lib/
+│   │   └── utils.ts
+│   ├── styles/
+│   │   └── globals.css
+│   ├── types/
+│   │   └── index.ts    # All shared TypeScript interfaces
+│   ├── App.tsx
+│   └── main.tsx
+├── .env.example         # VITE_EMAILJS_* keys documented here
+├── vercel.json
+├── vite.config.ts
+├── tailwind.config.ts
+├── tsconfig.json
+└── README.md
+
+PERFORMANCE REQUIREMENTS
+
+Lighthouse score target: 90+ across all categories (Performance, Accessibility, Best Practices, SEO)
+Lazy-load all images using loading="lazy" and consider next-gen formats (WebP)
+Code-split by section using React lazy() + Suspense
+Particle canvas must pause rendering when document.hidden is true
+No animation should block the main thread — use requestAnimationFrame or CSS transitions
+Bundle size target: under 500KB gzipped initial load
+
+
+POSITIONING PRINCIPLES
+Do not present Rahul as a senior engineer. Position him as:
+
+A highly capable student engineer who builds real, working things
+A fast learner with genuine multidisciplinary interests (hardware + software + AI)
+A hackathon-tested builder who delivers under pressure
+Someone who understands the full stack from ESP32 firmware to React frontends
+
+Every section should communicate: "I may still be a student, but I build real things."
+Avoid: vague phrases like "passionate about technology," empty skill bars at 95%, or inflated role titles. Lean into specifics — real project names, real technologies, real challenges faced.
+
+FINAL OUTPUT
+Generate:
+
+Full production-ready React + TypeScript frontend code
+All reusable components with proper TypeScript interfaces
+The folder structure above, fully populated
+A README.md with: project overview, local setup instructions, environment variable guide, deployment steps for Vercel
+A vercel.json with SPA redirect rules
+An .env.example with all required environment variable keys
+Responsive UI across mobile (375px), tablet (768px), and desktop (1440px)
+All animations implemented with performance and accessibility in mind
