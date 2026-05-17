@@ -8,13 +8,35 @@
     <meta name="robots" content="index, follow" />
     <meta property="og:title" content="Rahul Tembhare — Portfolio" />
     <meta property="og:description" content="Building intelligent software and IoT solutions through code, automation, and AI." />
-    <meta property="og:url" content="https://rahultembhare.vercel.app" />
+    <meta property="og:url" content="https://rahultembhare.replit.app" />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Rahul Tembhare — IoT Engineer & Full Stack Developer" />
     <meta name="twitter:description" content="Portfolio of Rahul Tembhare, a B.Tech IoT student building AI, embedded, and full-stack systems." />
     <meta name="theme-color" content="#00f5ff" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- Apply dark mode before React boots to prevent white flash -->
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('theme');
+          var isDark = saved ? saved === 'dark' : true;
+          if (isDark) {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+    <style>
+      /* Hard fallback: prevent white flash before CSS loads */
+      html, body, #root {
+        background-color: #080d14;
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>
