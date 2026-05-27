@@ -11,10 +11,10 @@ declare global {
 }
 
 const SOCIALS = [
-  { icon: Mail, label: "Email", href: "mailto:rahul@example.com", value: "rahul@example.com" },
-  { icon: Github, label: "GitHub", href: "https://github.com/rahultembhare", value: "github.com/rahultembhare" },
-  { icon: Linkedin, label: "LinkedIn", href: "#", value: "Connect on LinkedIn" },
-  { icon: Instagram, label: "Instagram", href: "#", value: "@rahultembhare" },
+  { icon: Mail, label: "Email", href: "mailto:tembharerahul28@gmail.com", value: "tembharerahul28@gmail.com" },
+  { icon: Github, label: "GitHub", href: "https://github.com/Rahull8767", value: "github.com/Rahull8767" },
+  { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/rahultembhare/", value: "Connect on LinkedIn" },
+  { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/i.am_rahulllll/", value: "@i.am_rahulllll" },
 ];
 
 type FormStatus = "idle" | "loading" | "success" | "error";

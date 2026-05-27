@@ -8,11 +8,10 @@ const NAV_LINKS = [
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#experience" },
-  { label: "GitHub", href: "#github" },
   { label: "Contact", href: "#contact" },
 ];
 
-const SECTION_IDS = ["about", "skills", "projects", "experience", "github", "contact"];
+const SECTION_IDS = ["about", "skills", "projects", "experience", "contact"];
 
 function scrollTo(id: string) {
   const el = document.getElementById(id);
@@ -98,7 +97,7 @@ export function Navbar({ onCommandPaletteOpen }: NavbarProps) {
               <span>⌘K</span>
             </button>
             <a
-              href="/resume/rahul-tembhare-resume.pdf"
+              href="/resume/Rahul_Tembhare_Resume_.pdf"
               download
               className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-primary border border-primary/40 rounded-md hover:bg-primary/10 hover:shadow-[0_0_12px_rgba(0,245,255,0.3)] transition-all duration-200"
               data-testid="button-download-resume-nav"
@@ -143,7 +142,7 @@ export function Navbar({ onCommandPaletteOpen }: NavbarProps) {
                 );
               })}
               <a
-                href="/resume/rahul-tembhare-resume.pdf"
+                href="/resume/Rahul_Tembhare_Resume_.pdf"
                 download
                 className="mt-4 flex items-center gap-2 text-primary font-semibold"
                 data-testid="button-download-resume-mobile"

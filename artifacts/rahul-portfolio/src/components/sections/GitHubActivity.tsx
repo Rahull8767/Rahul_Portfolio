@@ -1,174 +1,298 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { useGitHubData } from "@/hooks/useGitHubData";
-import { Github, Star, GitFork, RefreshCw } from "lucide-react";
+import { 
+  Github, Star, GitFork, Terminal, Cpu, Code2, 
+  Settings, Heart, ExternalLink, Box, Sparkles 
+} from "lucide-react";
 
-const GITHUB_USERNAME = "rahultembhare";
-
-function LanguageBar({ languages }: { languages: { name: string; percentage: number }[] }) {
-  const colors: Record<string, string> = {
-    "Python": "#06b6d4",
-    "JavaScript": "#3b82f6",
-    "C / C++": "#7c3aed",
-    "TypeScript": "#a855f7",
-  };
-
-  return (
-    <div>
-      <h3 className="text-xs font-mono text-muted-foreground uppercase tracking-wider mb-3">Top Languages</h3>
-      <div className="flex rounded-full overflow-hidden h-2 mb-3" aria-label="Language distribution bar">
-        {languages.map((lang) => (
-          <div
-            key={lang.name}
-            style={{ width: `${lang.percentage}%`, backgroundColor: colors[lang.name] ?? "#64748b" }}
-            title={`${lang.name}: ${lang.percentage}%`}
-          />
-        ))}
-      </div>
-      <div className="flex flex-wrap gap-3">
-        {languages.map((lang) => (
-          <div key={lang.name} className="flex items-center gap-1.5 text-xs text-muted-foreground">
-            <div
-              className="w-2 h-2 rounded-full"
-              style={{ backgroundColor: colors[lang.name] ?? "#64748b" }}
-            />
-            <span>{lang.name}</span>
-            <span className="font-mono text-muted-foreground/60">{lang.percentage}%</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+interface ToolkitItem {
+  category: string;
+  items: string[];
 }
 
-function RepoCard({ repo, index }: { repo: { name: string; description: string; language: string; stars: number; forks: number; url: string }; index: number }) {
-  const ref = useRef<HTMLAnchorElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-40px" });
+const TOOLKIT: ToolkitItem[] = [
+  { category: "Environment", items: ["Windows 11", "WSL2 (Ubuntu)", "Git / GitHub"] },
+  { category: "IDE & Shell", items: ["VS Code", "PowerShell", "Zsh"] },
+  { category: "Core Technologies", items: ["React / TypeScript", "Python / Flask", "C++ / Embedded C"] },
+  { category: "Hardware Tools", items: ["ESP32", "Arduino CLI", "Raspberry Pi"] }
+];
 
-  return (
-    <motion.a
-      ref={ref}
-      href={repo.url}
-      target="_blank"
-      rel="noopener noreferrer"
-      initial={{ opacity: 0, y: 18 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.4, delay: index * 0.08 }}
-      className="glass-card rounded-xl p-4 border border-white/10 hover:border-primary/30 hover:shadow-[0_0_14px_rgba(0,245,255,0.08)] transition-all duration-300 flex flex-col gap-2 group cursor-pointer"
-      aria-label={`Repository: ${repo.name}`}
-      data-testid={`link-repo-${repo.name}`}
-    >
-      <div className="flex items-center gap-2">
-        <Github className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors shrink-0" />
-        <span className="font-mono text-sm font-semibold text-foreground group-hover:text-primary transition-colors truncate">
-          {repo.name}
-        </span>
-      </div>
-      <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2">{repo.description}</p>
-      <div className="flex items-center gap-3 text-xs text-muted-foreground font-mono mt-auto pt-1">
-        <span className="flex items-center gap-1">
-          <span
-            className="w-2 h-2 rounded-full inline-block"
-            style={{ backgroundColor: repo.language === "Python" ? "#06b6d4" : repo.language === "JavaScript" ? "#3b82f6" : "#7c3aed" }}
-          />
-          {repo.language}
-        </span>
-        <span className="flex items-center gap-1">
-          <Star className="w-3 h-3" />
-          {repo.stars}
-        </span>
-        <span className="flex items-center gap-1">
-          <GitFork className="w-3 h-3" />
-          {repo.forks}
-        </span>
-      </div>
-    </motion.a>
-  );
-}
+const INTERESTS = [
+  {
+    icon: Cpu,
+    title: "IoT & Edge Systems",
+    description: "Developing firmware, sensor protocols, and MQTT networks for local smart-home and industrial nodes.",
+    status: "Active Focus",
+    color: "from-cyan-500/20 to-blue-500/20 text-cyan-400"
+  },
+  {
+    icon: Code2,
+    title: "Full-Stack Web Engineering",
+    description: "Building responsive, modern, type-safe web applications using React, Tailwind CSS, and Node.js.",
+    status: "Building",
+    color: "from-violet-500/20 to-purple-500/20 text-purple-400"
+  },
+  {
+    icon: Sparkles,
+    title: "Edge AI & Computer Vision",
+    description: "Experimenting with MediaPipe, OpenCV, and TensorFlow.js models directly on lower-spec dev environments.",
+    status: "Exploring",
+    color: "from-emerald-500/20 to-teal-500/20 text-emerald-400"
+  },
+  {
+    icon: Settings,
+    title: "Automation & DevEx Tools",
+    description: "Writing scripts, configuration managers, and build pipelines to optimize day-to-day coding workflows.",
+    status: "Ongoing",
+    color: "from-amber-500/20 to-orange-500/20 text-amber-400"
+  }
+];
+
+const CURATED_REPOS = [
+  {
+    name: "ai-beauty-analysis",
+    description: "Real-time facial analysis and expression web application using Flask, OpenCV, and MediaPipe with smile detection.",
+    language: "Python",
+    langColor: "#3572A5",
+    stars: 8,
+    forks: 2,
+    url: "https://github.com/Rahull8767"
+  },
+  {
+    name: "iot-esp32-projects",
+    description: "Collection of home automation nodes and sensor interfaces built for ESP32 utilizing FreeRTOS and MQTT protocols.",
+    language: "C / C++",
+    langColor: "#f34b7d",
+    stars: 12,
+    forks: 3,
+    url: "https://github.com/Rahull8767"
+  },
+  {
+    name: "gesture-recognition",
+    description: "Browser-native hand gesture recognition using TensorFlow.js HandPose model with text-to-speech feedback.",
+    language: "JavaScript",
+    langColor: "#f1e05a",
+    stars: 6,
+    forks: 0,
+    url: "https://github.com/Rahull8767"
+  },
+  {
+    name: "fitness-posture-tracker",
+    description: "Body posture and workout form scoring application using MediaPipe BlazePose with joint angle calculations.",
+    language: "Python",
+    langColor: "#3572A5",
+    stars: 9,
+    forks: 1,
+    url: "https://github.com/Rahull8767"
+  }
+];
 
 export function GitHubActivity() {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
-  const { repos, languages, loading, error } = useGitHubData(GITHUB_USERNAME);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const inView = useInView(containerRef, { once: true, margin: "-100px" });
+  const [activeTab, setActiveTab] = useState<"toolkit" | "interests">("toolkit");
 
   return (
     <section id="github" className="py-24 px-4" aria-labelledby="github-heading">
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-6xl mx-auto">
+        {/* Section Header */}
         <motion.div
-          ref={ref}
+          ref={containerRef}
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="mb-12"
+          className="mb-12 text-center md:text-left"
         >
-          <p className="font-mono text-primary text-xs tracking-[0.2em] uppercase mb-2">github --status</p>
-          <div className="flex items-center gap-3">
-            <h2 id="github-heading" className="text-3xl sm:text-4xl font-bold text-foreground">
-              GitHub Activity
-            </h2>
-            {error && (
-              <span className="text-xs font-mono text-muted-foreground bg-white/5 border border-white/10 px-2 py-1 rounded-md">
-                Using cached data
-              </span>
-            )}
-          </div>
+          <p className="font-mono text-primary text-xs tracking-[0.2em] uppercase mb-2">
+            git --status --open-source
+          </p>
+          <h2 id="github-heading" className="text-3xl sm:text-4xl font-bold text-foreground">
+            Open Source & Development
+          </h2>
+          <p className="text-muted-foreground text-sm sm:text-base mt-3 max-w-2xl leading-relaxed">
+            I love sharing code, modular tools, and hardware firmwares. Here is a view of my developer configuration, 
+            contribution priorities, and key projects.
+          </p>
         </motion.div>
 
-        {/* Stats images — terminal style */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-          <div className="glass-card rounded-xl p-1 border border-white/10 overflow-hidden relative">
-            <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary/30 to-transparent animate-pulse" aria-hidden="true" />
-            <img
-              src={`https://github-readme-stats.vercel.app/api?username=${GITHUB_USERNAME}&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0a0a1a`}
-              alt="Rahul Tembhare's GitHub stats — stars, commits, pull requests, issues, and contributions"
-              className="w-full rounded-lg"
-              loading="lazy"
-            />
+        {/* Dashboard Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
+          
+          {/* Left Column: Interactive Dev Hub (5 cols) */}
+          <div className="lg:col-span-5 flex flex-col gap-4">
+            <div className="glass-card rounded-xl border border-white/10 overflow-hidden flex flex-col h-full">
+              {/* Tab Selector */}
+              <div className="flex border-b border-white/10 bg-white/5 p-1.5 gap-2">
+                <button
+                  onClick={() => setActiveTab("toolkit")}
+                  className={`flex-1 py-2 px-3 rounded-lg text-xs font-mono font-semibold transition-all duration-200 flex items-center justify-center gap-2 ${
+                    activeTab === "toolkit"
+                      ? "bg-primary/10 text-primary border border-primary/20 shadow-[0_0_10px_rgba(0,245,255,0.15)]"
+                      : "text-muted-foreground hover:text-foreground hover:bg-white/5"
+                  }`}
+                >
+                  <Terminal className="w-3.5 h-3.5" />
+                  Dev Environment
+                </button>
+                <button
+                  onClick={() => setActiveTab("interests")}
+                  className={`flex-1 py-2 px-3 rounded-lg text-xs font-mono font-semibold transition-all duration-200 flex items-center justify-center gap-2 ${
+                    activeTab === "interests"
+                      ? "bg-primary/10 text-primary border border-primary/20 shadow-[0_0_10px_rgba(0,245,255,0.15)]"
+                      : "text-muted-foreground hover:text-foreground hover:bg-white/5"
+                  }`}
+                >
+                  <Heart className="w-3.5 h-3.5" />
+                  Ecosystem Focus
+                </button>
+              </div>
+
+              {/* Tab Contents */}
+              <div className="p-5 flex-1 flex flex-col justify-center min-h-[300px]">
+                {activeTab === "toolkit" ? (
+                  <motion.div
+                    key="toolkit"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.25 }}
+                    className="space-y-4"
+                  >
+                    <div className="flex items-center gap-2 mb-2">
+                      <Box className="w-4 h-4 text-primary" />
+                      <span className="text-xs font-mono text-muted-foreground uppercase tracking-widest">Workspace Spec</span>
+                    </div>
+
+                    {TOOLKIT.map((category) => (
+                      <div key={category.category} className="border-l-2 border-primary/20 pl-4 py-0.5">
+                        <h4 className="text-xs font-mono text-primary font-semibold uppercase">{category.category}</h4>
+                        <p className="text-sm text-muted-foreground mt-1 font-sans">
+                          {category.items.join(" · ")}
+                        </p>
+                      </div>
+                    ))}
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="interests"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.25 }}
+                    className="space-y-4"
+                  >
+                    <div className="flex items-center gap-2 mb-2">
+                      <Heart className="w-4 h-4 text-primary" />
+                      <span className="text-xs font-mono text-muted-foreground uppercase tracking-widest">Interests & Goals</span>
+                    </div>
+                    
+                    <div className="space-y-3 font-sans text-sm text-muted-foreground leading-relaxed">
+                      <p>
+                        ⚡ High priority on building <strong className="text-foreground">Edge Computing firmware</strong> that consumes minimal energy while processing localized intelligence.
+                      </p>
+                      <p>
+                        🌐 Excited about contributing to modular <strong className="text-foreground">UI components</strong> and dev-automation scripts in the JavaScript ecosystem.
+                      </p>
+                      <p>
+                        🤖 Focus on connecting consumer sensors directly to <strong className="text-foreground">AI interfaces</strong> using lightweight REST/Websocket protocols.
+                      </p>
+                    </div>
+                  </motion.div>
+                )}
+              </div>
+            </div>
           </div>
-          <div className="glass-card rounded-xl p-1 border border-white/10 overflow-hidden">
-            <img
-              src={`https://github-readme-streak-stats.herokuapp.com/?user=${GITHUB_USERNAME}&theme=tokyonight&hide_border=true&background=0a0a1a`}
-              alt="Rahul Tembhare's GitHub commit streak statistics"
-              className="w-full rounded-lg"
-              loading="lazy"
-            />
+
+          {/* Right Column: Focus Areas Showcase (7 cols) */}
+          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {INTERESTS.map((item, index) => {
+              const Icon = item.icon;
+              return (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={inView ? { opacity: 1, scale: 1 } : {}}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                  className="glass-card rounded-xl p-5 border border-white/10 hover:border-primary/20 flex flex-col justify-between group transition-all duration-300"
+                >
+                  <div>
+                    <div className={`p-2.5 rounded-lg w-fit bg-gradient-to-br ${item.color} mb-4`}>
+                      <Icon className="w-4 h-4 shrink-0" />
+                    </div>
+                    <h3 className="font-semibold text-foreground text-base mb-2 group-hover:text-primary transition-colors">
+                      {item.title}
+                    </h3>
+                    <p className="text-xs text-muted-foreground leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
+                  <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-[10px] font-mono">
+                    <span className="text-muted-foreground uppercase tracking-wider">Status</span>
+                    <span className="text-primary font-bold">{item.status}</span>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
+
         </div>
 
-        {/* Repos */}
-        <div className="mb-8">
-          <h3 className="text-sm font-semibold text-foreground mb-4 font-mono tracking-wider uppercase flex items-center gap-2">
-            <Github className="w-4 h-4 text-primary" />
-            Pinned Repositories
+        {/* Highlight Repositories Section */}
+        <div>
+          <h3 className="text-sm font-semibold text-foreground mb-6 font-mono tracking-wider uppercase flex items-center justify-center md:justify-start gap-2">
+            <Github className="w-4.5 h-4.5 text-primary" />
+            Featured Projects & Codebases
           </h3>
-          {loading ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {Array.from({ length: 4 }).map((_, i) => (
-                <div key={i} className="glass-card rounded-xl p-4 border border-white/10 animate-pulse h-28" />
-              ))}
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {repos.map((repo, i) => (
-                <RepoCard key={repo.name} repo={repo} index={i} />
-              ))}
-            </div>
-          )}
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {CURATED_REPOS.map((repo, i) => (
+              <motion.a
+                key={repo.name}
+                href={repo.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 15 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.4, delay: i * 0.08 }}
+                className="glass-card rounded-xl p-5 border border-white/10 hover:border-primary/30 hover:shadow-[0_0_15px_rgba(0,245,255,0.06)] transition-all duration-300 flex flex-col gap-3 group"
+                aria-label={`Repository: ${repo.name}`}
+              >
+                <div className="flex items-start justify-between">
+                  <div className="flex items-center gap-2">
+                    <Github className="w-4.5 h-4.5 text-muted-foreground group-hover:text-primary transition-colors shrink-0" />
+                    <span className="font-mono text-sm font-semibold text-foreground group-hover:text-primary transition-colors truncate">
+                      {repo.name}
+                    </span>
+                  </div>
+                  <ExternalLink className="w-3.5 h-3.5 text-muted-foreground group-hover:text-primary transition-colors shrink-0" />
+                </div>
+                
+                <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2">
+                  {repo.description}
+                </p>
+
+                <div className="flex items-center gap-4 text-xs text-muted-foreground font-mono mt-auto pt-2">
+                  <span className="flex items-center gap-1.5">
+                    <span
+                      className="w-2 h-2 rounded-full inline-block"
+                      style={{ backgroundColor: repo.langColor }}
+                    />
+                    {repo.language}
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <Star className="w-3 h-3 text-yellow-500/80" />
+                    {repo.stars}
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <GitFork className="w-3 h-3 text-primary/80" />
+                    {repo.forks}
+                  </span>
+                </div>
+              </motion.a>
+            ))}
+          </div>
         </div>
 
-        {/* Language bar */}
-        {languages.length > 0 && (
-          <div className="glass-card rounded-xl p-5 border border-white/10">
-            <LanguageBar languages={languages} />
-          </div>
-        )}
-
-        {error && (
-          <div className="mt-4 flex items-center gap-2 text-xs text-muted-foreground font-mono">
-            <RefreshCw className="w-3 h-3" />
-            <span>Showing cached data — GitHub API may be rate-limited</span>
-          </div>
-        )}
       </div>
     </section>
   );

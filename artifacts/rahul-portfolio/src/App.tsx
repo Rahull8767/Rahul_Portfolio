@@ -14,8 +14,6 @@ import { Skills } from "@/components/sections/Skills";
 import { Projects } from "@/components/sections/Projects";
 import { Experience } from "@/components/sections/Experience";
 import { Education } from "@/components/sections/Education";
-import { Certifications } from "@/components/sections/Certifications";
-import { GitHubActivity } from "@/components/sections/GitHubActivity";
 import { Contact } from "@/components/sections/Contact";
 
 function useTheme() {
@@ -171,8 +169,6 @@ export default function App() {
         <Projects />
         <Experience />
         <Education />
-        <Certifications />
-        <GitHubActivity />
         <Contact />
       </main>
 

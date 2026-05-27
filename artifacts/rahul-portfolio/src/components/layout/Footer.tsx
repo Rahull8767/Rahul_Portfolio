@@ -5,15 +5,14 @@ const NAV_LINKS = [
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#experience" },
-  { label: "GitHub", href: "#github" },
   { label: "Contact", href: "#contact" },
 ];
 
 const SOCIALS = [
-  { icon: Github, href: "#", label: "GitHub" },
-  { icon: Linkedin, href: "#", label: "LinkedIn" },
-  { icon: Mail, href: "mailto:rahul@example.com", label: "Email" },
-  { icon: Instagram, href: "#", label: "Instagram" },
+  { icon: Github, href: "https://github.com/Rahull8767", label: "GitHub" },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/rahultembhare/", label: "LinkedIn" },
+  { icon: Mail, href: "mailto:tembharerahul28@gmail.com", label: "Email" },
+  { icon: Instagram, href: "https://www.instagram.com/i.am_rahulllll/", label: "Instagram" },
 ];
 
 function scrollTo(id: string) {

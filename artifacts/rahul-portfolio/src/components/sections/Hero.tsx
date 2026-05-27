@@ -14,7 +14,7 @@ const TERMINAL_LINES = [
   { prompt: true, text: "python train_model.py --dataset beauty_analysis" },
   { prompt: false, text: "> Training... accuracy: 94.2%" },
   { prompt: true, text: "git push origin main" },
-  { prompt: false, text: "> Pushed to rahultembhare/ai-beauty-analysis" },
+  { prompt: false, text: "> Pushed to Rahull8767/ai-beauty-analysis" },
   { prompt: true, text: "flask run --host=0.0.0.0" },
   { prompt: false, text: "> Running on http://0.0.0.0:5000" },
   { prompt: true, text: "arduino-cli compile --fqbn esp32:esp32:esp32" },
@@ -194,8 +194,8 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <span className="inline-block font-mono text-xs text-primary tracking-[0.2em] uppercase mb-4 border border-primary/30 px-3 py-1 rounded-full bg-primary/5">
-              Available for internships
+            <span className="inline-block font-mono text-[10px] sm:text-xs text-primary tracking-[0.15em] sm:tracking-[0.2em] uppercase mb-4 border border-primary/30 px-2.5 py-1 rounded-full bg-primary/5 max-w-full text-center whitespace-normal sm:whitespace-nowrap">
+              Open to opportunities & collaborations
             </span>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
@@ -232,7 +232,7 @@ export function Hero() {
                 <ChevronDown className="w-4 h-4" />
               </a>
               <a
-                href="/resume/rahul-tembhare-resume.pdf"
+                href="/resume/Rahul_Tembhare_Resume_.pdf"
                 download
                 className="flex items-center gap-2 px-5 py-2.5 rounded-lg border border-white/20 text-foreground font-semibold hover:border-primary/40 hover:text-primary transition-all duration-200 text-sm"
                 data-testid="button-download-resume-hero"
