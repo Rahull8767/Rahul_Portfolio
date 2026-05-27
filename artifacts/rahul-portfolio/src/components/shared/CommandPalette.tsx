@@ -33,7 +33,7 @@ export function CommandPalette({ open, onClose, isDark, onToggleTheme }: Command
     { id: "projects", label: "Go to Projects", icon: <span className="text-xs font-mono text-muted-foreground">§</span>, action: () => { scrollTo("projects"); onClose(); } },
     { id: "experience", label: "Go to Experience", icon: <span className="text-xs font-mono text-muted-foreground">§</span>, action: () => { scrollTo("experience"); onClose(); } },
     { id: "contact", label: "Go to Contact", icon: <MessageSquare className="w-3.5 h-3.5" />, action: () => { scrollTo("contact"); onClose(); } },
-    { id: "resume", label: "Download Resume", shortcut: "R", icon: <Download className="w-3.5 h-3.5" />, action: () => { window.open("/resume/Rahul_Tembhare_Resume_.pdf", "_blank"); onClose(); } },
+    { id: "resume", label: "Download Resume", shortcut: "R", icon: <Download className="w-3.5 h-3.5" />, action: () => { window.open("/resume/rahul-tembhare-resume.pdf", "_blank"); onClose(); } },
     { id: "github", label: "Open GitHub", shortcut: "GH", icon: <Github className="w-3.5 h-3.5" />, action: () => { window.open("https://github.com/Rahull8767", "_blank"); onClose(); } },
     { id: "theme", label: isDark ? "Switch to Light Mode" : "Switch to Dark Mode", icon: isDark ? <Sun className="w-3.5 h-3.5" /> : <Moon className="w-3.5 h-3.5" />, action: () => { onToggleTheme(); onClose(); } },
   ];
