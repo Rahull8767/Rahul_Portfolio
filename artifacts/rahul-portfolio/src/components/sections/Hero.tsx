@@ -232,7 +232,7 @@ export function Hero() {
                 <ChevronDown className="w-4 h-4" />
               </a>
               <a
-                href="/resume/Rahul_Tembhare_Resume_.pdf"
+                href="/resume/rahul-tembhare-resume.pdf"
                 download
                 className="flex items-center gap-2 px-5 py-2.5 rounded-lg border border-white/20 text-foreground font-semibold hover:border-primary/40 hover:text-primary transition-all duration-200 text-sm"
                 data-testid="button-download-resume-hero"
