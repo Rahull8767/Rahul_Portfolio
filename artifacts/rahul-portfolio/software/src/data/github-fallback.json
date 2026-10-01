@@ -1,0 +1,42 @@
+{
+  "repos": [
+    {
+      "name": "ai-beauty-analysis",
+      "description": "Real-time facial analysis web app using Flask, OpenCV, and MediaPipe with smile detection and personalized feedback.",
+      "language": "Python",
+      "stars": 4,
+      "forks": 1,
+      "url": "#"
+    },
+    {
+      "name": "gesture-recognition",
+      "description": "Browser-native hand gesture recognition using TensorFlow.js HandPose model with text-to-speech output.",
+      "language": "JavaScript",
+      "stars": 3,
+      "forks": 0,
+      "url": "#"
+    },
+    {
+      "name": "iot-esp32-projects",
+      "description": "Collection of IoT prototypes with ESP32 and Raspberry Pi — sensor logging, MQTT integration, and home automation.",
+      "language": "Python",
+      "stars": 5,
+      "forks": 2,
+      "url": "#"
+    },
+    {
+      "name": "fitness-analysis",
+      "description": "Body posture and fitness scoring app using MediaPipe BlazePose model with joint angle computation.",
+      "language": "Python",
+      "stars": 2,
+      "forks": 1,
+      "url": "#"
+    }
+  ],
+  "languages": [
+    { "name": "Python", "percentage": 45 },
+    { "name": "JavaScript", "percentage": 25 },
+    { "name": "C / C++", "percentage": 20 },
+    { "name": "TypeScript", "percentage": 10 }
+  ]
+}

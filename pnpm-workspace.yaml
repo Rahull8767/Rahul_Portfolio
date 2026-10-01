@@ -36,6 +36,8 @@ minimumReleaseAgeExclude:
 
 packages:
   - artifacts/*
+  - artifacts/rahul-portfolio/software
+  - artifacts/rahul-portfolio/editing
   - lib/*
   - lib/integrations/*
   - scripts

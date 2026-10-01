@@ -1,15 +1,26 @@
 # See https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
 
 # compiled output
-dist
-tmp
+# Build output
+dist/
+**/dist/
+
+# Dependencies
+node_modules/
+**/node_modules/tmp
 out-tsc
 *.tsbuildinfo
 .expo
 .expo-shared
 
 # dependencies
-node_modules
+# Build output
+dist/
+**/dist/
+
+# Dependencies
+node_modules/
+**/node_modules/
 
 # IDEs and editors
 /.idea
@@ -47,3 +58,9 @@ Thumbs.db
 # Replit
 .cache/
 .local/
+
+# Ignored large video files migrated to Cloudinary
+artifacts/rahul-portfolio/editing/public/assets/videos/anime 1_2.mp4
+artifacts/rahul-portfolio/editing/public/assets/videos/Bhagyalaxmi_2nd_reel.mp4
+artifacts/rahul-portfolio/editing/public/assets/videos/reeelll.mp4
+artifacts/rahul-portfolio/editing/public/assets/videos/RG.mp4
