@@ -62,7 +62,7 @@ export const featuredWorks: FeaturedWorkItem[] = [
     id: "bhagyalaxmi-long-reel",
     title: "BHAGYALAXMI",
     category: "LONG REEL",
-    video: "/assets/videos/Bhagyalaxmi_Long_Reel(english).mp4",
+    video: "https://res.cloudinary.com/anhalsoa/video/upload/v1790830718/Bhagyalaxmi_Long_Reel_english.mp4",
   },
   {
     id: "rg-edit",
