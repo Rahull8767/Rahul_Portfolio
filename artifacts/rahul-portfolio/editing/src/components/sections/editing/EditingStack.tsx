@@ -2,12 +2,12 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 
 const TOOLS = [
-  { name: "Premiere Pro", iconUrl: "/assets/images/adobe-premiere-pro-icon.png", color: "#9999FF" },
-  { name: "After Effects", iconUrl: "/assets/images/adobe-after-effects-icon.png", color: "#9999FF" },
-  { name: "Photoshop", iconUrl: "/assets/images/adobe-photoshop-icon.png", color: "#31A8FF" },
-  { name: "Lightroom", iconUrl: "/assets/images/adobe-lightroom-icon.png", color: "#31A8FF" },
-  { name: "Illustrator", iconUrl: "/assets/images/adobe-illustrator-icon.png", color: "#FF9A00" },
-  { name: "Higgsfield", iconUrl: "/assets/images/higgsfield-icon.png", color: "#FFFFFF" }
+  { name: "Premiere Pro", iconUrl: `${import.meta.env.BASE_URL}assets/images/adobe-premiere-pro-icon.png`, color: "#9999FF" },
+  { name: "After Effects", iconUrl: `${import.meta.env.BASE_URL}assets/images/adobe-after-effects-icon.png`, color: "#9999FF" },
+  { name: "Photoshop", iconUrl: `${import.meta.env.BASE_URL}assets/images/adobe-photoshop-icon.png`, color: "#31A8FF" },
+  { name: "Lightroom", iconUrl: `${import.meta.env.BASE_URL}assets/images/adobe-lightroom-icon.png`, color: "#31A8FF" },
+  { name: "Illustrator", iconUrl: `${import.meta.env.BASE_URL}assets/images/adobe-illustrator-icon.png`, color: "#FF9A00" },
+  { name: "Higgsfield", iconUrl: `${import.meta.env.BASE_URL}assets/images/higgsfield-icon.png`, color: "#FFFFFF" }
 ];
 
 export function EditingStack() {

@@ -87,7 +87,7 @@ export function LandingPage() {
             animate={{ background: "linear-gradient(to top, rgba(232,121,249,0.15), transparent)" }}
           />
           <img 
-            src="/portrait.png" 
+            src={`${import.meta.env.BASE_URL}portrait.png`} 
             alt="Rahul Tembhare" 
             className="relative z-10 w-full h-full object-contain object-bottom filter drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
             style={{

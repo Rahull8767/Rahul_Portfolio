@@ -61,12 +61,12 @@ export function EditingPage() {
 
 
   const tools = [
-    { name: "Premiere Pro", iconUrl: "/assets/images/adobe-premiere-pro-icon.png" },
-    { name: "After Effects", iconUrl: "/assets/images/adobe-after-effects-icon.png" },
-    { name: "Photoshop", iconUrl: "/assets/images/adobe-photoshop-icon.png" },
-    { name: "Lightroom", iconUrl: "/assets/images/adobe-lightroom-icon.png" },
-    { name: "Illustrator", iconUrl: "/assets/images/adobe-illustrator-icon.png" },
-    { name: "Higgsfield", iconUrl: "/assets/images/higgsfield-icon.png" }
+    { name: "Premiere Pro", iconUrl: `${import.meta.env.BASE_URL}assets/images/adobe-premiere-pro-icon.png` },
+    { name: "After Effects", iconUrl: `${import.meta.env.BASE_URL}assets/images/adobe-after-effects-icon.png` },
+    { name: "Photoshop", iconUrl: `${import.meta.env.BASE_URL}assets/images/adobe-photoshop-icon.png` },
+    { name: "Lightroom", iconUrl: `${import.meta.env.BASE_URL}assets/images/adobe-lightroom-icon.png` },
+    { name: "Illustrator", iconUrl: `${import.meta.env.BASE_URL}assets/images/adobe-illustrator-icon.png` },
+    { name: "Higgsfield", iconUrl: `${import.meta.env.BASE_URL}assets/images/higgsfield-icon.png` }
   ];
 
   return (
@@ -186,7 +186,7 @@ export function EditingPage() {
             >
               <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent z-10"></div>
               <div className="absolute inset-0 bg-gradient-to-l from-[#050505] via-transparent to-transparent z-10"></div>
-              <img src="/portrait.png" className="w-full h-auto object-cover object-bottom opacity-90" alt="Rahul Tembhare" />
+              <img src={`${import.meta.env.BASE_URL}portrait.png`} className="w-full h-auto object-cover object-bottom opacity-90" alt="Rahul Tembhare" />
             </motion.div>
 
             <motion.h1 
@@ -257,7 +257,7 @@ export function EditingPage() {
               initial={{ opacity: 0, scale: 1.05, filter: 'blur(10px)' }}
               animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
               transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-              src="/portrait.png" 
+              src={`${import.meta.env.BASE_URL}portrait.png`} 
               alt="Rahul Tembhare" 
               className="w-full max-w-[400px] md:max-w-none h-full object-contain md:object-right-bottom mx-auto md:mx-0 relative z-0" 
             />
