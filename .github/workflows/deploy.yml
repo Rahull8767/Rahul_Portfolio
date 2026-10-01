@@ -24,7 +24,7 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v3
         with:
-          version: 9
+          version: 11
           
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -33,10 +33,10 @@ jobs:
           cache: 'pnpm'
           
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --filter "@workspace/rahul-portfolio-editing..."
         
       - name: Build
-        run: cd artifacts/rahul-portfolio/editing && pnpm run build
+        run: pnpm --filter "@workspace/rahul-portfolio-editing" run build
         
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
