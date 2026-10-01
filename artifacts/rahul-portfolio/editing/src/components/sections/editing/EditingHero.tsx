@@ -102,7 +102,10 @@ export function EditingHero() {
             
             {/* Inner Image */}
             <div className="relative w-full h-full rounded-full overflow-hidden bg-[#111]">
-              <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2064&auto=format&fit=crop')] bg-cover bg-center opacity-80 mix-blend-luminosity hover:mix-blend-normal hover:scale-105 transition-all duration-700" />
+              <div 
+                className="absolute inset-0 bg-cover bg-center opacity-80 mix-blend-luminosity hover:mix-blend-normal hover:scale-105 transition-all duration-700" 
+                style={{ backgroundImage: "url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2064&auto=format&fit=crop')" }}
+              />
             </div>
 
             {/* Floating Badge 1 */}
