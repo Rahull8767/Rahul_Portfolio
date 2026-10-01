@@ -10,6 +10,30 @@ export function EditingPage() {
   const [, setLocation] = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeVideo, setActiveVideo] = useState<{title: string; video: string; aspectRatio?: string} | null>(null);
+
+  const openVideoModal = (video: {title: string; video: string; aspectRatio?: string}) => {
+    setActiveVideo(video);
+    window.history.pushState({ videoModal: true }, "");
+  };
+
+  const closeVideoModal = () => {
+    if (window.history.state?.videoModal) {
+      window.history.back();
+    } else {
+      setActiveVideo(null);
+    }
+  };
+
+  useEffect(() => {
+    const handlePopState = () => {
+      if (!window.history.state?.videoModal) {
+        setActiveVideo(null);
+      }
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -32,7 +56,7 @@ export function EditingPage() {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setActiveVideo(null);
+      if (e.key === 'Escape') closeVideoModal();
     };
     if (activeVideo) {
       window.addEventListener('keydown', handleKeyDown);
@@ -326,7 +350,7 @@ export function EditingPage() {
         </section>
 
         {/* SERVICES GRID */}
-        <section className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mb-16 md:mb-24">
+        <section id="skills" className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mb-16 md:mb-24">
           {services.map((s, i) => (
             <motion.div 
               key={i}
@@ -350,7 +374,7 @@ export function EditingPage() {
           ))}
         </section>
 
-        <EditingFeaturedWork onProjectClick={setActiveVideo} />
+        <EditingFeaturedWork onProjectClick={openVideoModal} />
 
 
 
@@ -424,11 +448,11 @@ export function EditingPage() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
             className="fixed inset-0 z-[100] flex items-center justify-center bg-[#050505]/95 backdrop-blur-xl p-4 md:p-12"
-            onClick={() => setActiveVideo(null)}
+            onClick={() => closeVideoModal()}
           >
             <button 
               className="absolute top-6 right-6 p-2 text-white/50 hover:text-white transition-colors focus:outline-none bg-white/5 rounded-full backdrop-blur-md border border-white/10 z-50"
-              onClick={() => setActiveVideo(null)}
+              onClick={() => closeVideoModal()}
               aria-label="Close modal"
             >
               <X size={24} />
