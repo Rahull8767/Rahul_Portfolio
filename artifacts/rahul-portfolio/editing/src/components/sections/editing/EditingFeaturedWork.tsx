@@ -2,8 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { ArrowRight, Play } from "lucide-react";
 import { featuredWorks, FeaturedWorkItem } from "@/data/editing";
+import { useLocation } from "wouter";
 
-function ProjectCard({ project, onClick }: { project: FeaturedWorkItem; onClick: () => void }) {
+export function ProjectCard({ project, onClick }: { project: FeaturedWorkItem; onClick: () => void }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isHovered, setIsHovered] = useState(false);
@@ -74,6 +75,7 @@ function ProjectCard({ project, onClick }: { project: FeaturedWorkItem; onClick:
 export function EditingFeaturedWork({ onProjectClick }: { onProjectClick: (p: any) => void }) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [, setLocation] = useLocation();
 
   const handleScroll = () => {
     if (scrollContainerRef.current) {
@@ -95,7 +97,7 @@ export function EditingFeaturedWork({ onProjectClick }: { onProjectClick: (p: an
           <p className="text-white/50 text-sm">Selected visual work.</p>
         </div>
         
-        <button className="text-xs font-bold tracking-[0.2em] uppercase text-[#a855f7] hover:text-white transition-colors flex items-center gap-2 group">
+        <button onClick={() => setLocation("/projects")} className="text-xs font-bold tracking-[0.2em] uppercase text-[#a855f7] hover:text-white transition-colors flex items-center gap-2 group">
           View All Projects <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
         </button>
       </div>
