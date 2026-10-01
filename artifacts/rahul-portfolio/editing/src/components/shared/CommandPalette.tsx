@@ -30,8 +30,7 @@ export function CommandPalette({ open, onClose, isDark, onToggleTheme }: Command
   const commands: Command[] = [
     { id: "about", label: "Go to About", icon: <span className="text-xs font-mono text-muted-foreground">§</span>, action: () => { scrollTo("about"); onClose(); } },
     { id: "skills", label: "Go to Skills", icon: <span className="text-xs font-mono text-muted-foreground">§</span>, action: () => { scrollTo("skills"); onClose(); } },
-    { id: "projects", label: "Go to Projects", icon: <span className="text-xs font-mono text-muted-foreground">§</span>, action: () => { scrollTo("projects"); onClose(); } },
-    { id: "experience", label: "Go to Experience", icon: <span className="text-xs font-mono text-muted-foreground">§</span>, action: () => { scrollTo("experience"); onClose(); } },
+    { id: "projects", label: "Go to Projects", icon: <span className="text-xs font-mono text-muted-foreground">§</span>, action: () => { scrollTo("work"); onClose(); } },
     { id: "contact", label: "Go to Contact", icon: <MessageSquare className="w-3.5 h-3.5" />, action: () => { scrollTo("contact"); onClose(); } },
     { id: "resume", label: "Download Resume", shortcut: "R", icon: <Download className="w-3.5 h-3.5" />, action: () => { window.open("/resume/rahul-tembhare-resume.pdf", "_blank"); onClose(); } },
     { id: "github", label: "Open GitHub", shortcut: "GH", icon: <Github className="w-3.5 h-3.5" />, action: () => { window.open("https://github.com/Rahull8767", "_blank"); onClose(); } },

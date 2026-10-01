@@ -8,7 +8,6 @@ import { CommandPalette } from "@/components/shared/CommandPalette";
 import { EditingPage } from "@/pages/EditingPage";
 import { EditingCaseStudyPlaceholder } from "@/pages/EditingCaseStudyPlaceholder";
 import { EditingAllProjectsPage } from "@/pages/EditingAllProjectsPage";
-import { SoftwarePage } from "@/pages/SoftwarePage";
 
 function useTheme() {
   const [isDark, setIsDark] = useState<boolean>(() => {
@@ -56,7 +55,6 @@ export function App() {
         <AnimatePresence mode="wait">
           <Switch key={location} location={location}>
             <Route path="/" component={EditingPage} />
-            <Route path="/software" component={SoftwarePage} />
             <Route path="/projects" component={EditingAllProjectsPage} />
             <Route path="/projects/:slug" component={EditingCaseStudyPlaceholder} />
           </Switch>

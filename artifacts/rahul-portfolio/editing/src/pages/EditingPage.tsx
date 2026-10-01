@@ -127,12 +127,6 @@ export function EditingPage() {
 
           <div className="hidden md:flex items-center gap-4">
             <button 
-              onClick={() => setLocation("/software")}
-              className="text-xs font-semibold tracking-wider uppercase text-white/50 hover:text-white transition-colors"
-            >
-              Software Site
-            </button>
-            <button 
               onClick={() => handleScroll("contact")}
               className="bg-gradient-to-r from-[#8a2be2] to-[#ff5722] rounded-full px-6 py-2.5 text-xs font-bold uppercase tracking-wide text-white hover:shadow-[0_0_20px_rgba(138,43,226,0.4)] transition-all flex items-center gap-2"
             >
@@ -168,12 +162,6 @@ export function EditingPage() {
                 </button>
               ))}
               <div className="h-px bg-white/10 w-full my-2"></div>
-              <button 
-                onClick={() => setLocation("/software")}
-                className="text-left text-lg font-bold text-[#e0aaff] uppercase tracking-wider py-2"
-              >
-                Software Site →
-              </button>
               <button 
                 onClick={() => handleScroll("contact")}
                 className="mt-4 bg-gradient-to-r from-[#8a2be2] to-[#ff5722] rounded-full px-6 py-4 text-sm font-bold uppercase tracking-wide text-white flex items-center justify-center gap-2"
